@@ -5,8 +5,7 @@ from bs4 import BeautifulSoup
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-# data_input = input("What year would you like to make playlist of (YYY-MM-DD): ")
-data_input = "2023-07-26"
+data_input = input("What year would you like to make playlist of (YYY-MM-DD): ")
 url = f"https://www.billboard.com/charts/hot-100/{data_input}/"
 response = requests.get(url=url)
 html = response.text
