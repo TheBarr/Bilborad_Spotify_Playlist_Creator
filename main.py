@@ -39,7 +39,7 @@ user_name = sp.current_user()["id"]
 list_of_uris = []
 
 for i in range(len(songs)):
-    track_name = songs[i]
+    track_name = songs[i].replace("'", "")
     artist_name = artists[i].split()[0]
     query = f'track:"{track_name}" artist:"{artist_name}"'
     results = sp.search(q=query, type='track', limit=1)
@@ -48,6 +48,6 @@ for i in range(len(songs)):
         list_of_uris.append(uri)
     except IndexError:
         print(f"{songs[i]} doesn't exist in Spotify. Skipped.")
-
+        print(track_name, artist_name)
 playlist = sp.user_playlist_create(user=user_name, name=f"Billboard Hot 100 from {data_input}", public=False)
 sp.playlist_add_items(playlist_id=playlist["id"], items=list_of_uris)
